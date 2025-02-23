@@ -1,5 +1,6 @@
-/* color palette from <https://github.com/vuejs/theme> */
 body {
+  background-color: rgb(55, 49, 93);
+  color: antiquewhite;
   min-height: 100vh;
   transition:
     color 0.5s,

@@ -51,12 +51,25 @@ function addHaiku(): void {
 </template>
 
 <style>
+main {
+  background-color: rgb(74, 65, 130);
+  margin: auto;
+  padding: 1rem;
+}
+
+#haiku-form {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: left;
+}
+
 #haiku-list {
   text-align: center;
   max-width: fit-content;
   margin: auto;
 }
-.what-to-do > p {
+
+.home-haiku > p {
   height: 0;
   padding-bottom: 0.7rem;
 }
@@ -65,15 +78,47 @@ function addHaiku(): void {
   margin-top: 1rem;
 }
 
-.what-to-do {
+.home-haiku {
   text-align: center;
+  color: antiquewhite;
 }
 
-.what-to-do,
+.home-haiku,
 .haiku-forms {
   display: grid;
   grid-template-columns: auto;
   max-width: fit-content;
   margin: auto;
+}
+
+button {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(134, 124, 195);
+  color: antiquewhite;
+  padding: 1em;
+}
+
+label {
+  padding-top: 1.5em;
+}
+
+input {
+  color: antiquewhite;
+  background-color: rgb(166, 158, 219);
+  border: none;
+  border-radius: 3px;
+  padding: 12px 10px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #950cbb;
+  background-color: rgb(81, 70, 157);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  border: none;
 }
 </style>
