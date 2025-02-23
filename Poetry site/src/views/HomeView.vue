@@ -30,31 +30,26 @@ function addHaiku(): void {
 
 <template>
   <main>
-    <div class="what-to-do">
+    <div class="home-haiku">
       <p>Place here a sentence.</p>
       <p>Gently we all grow through life.</p>
       <p>The end begins again.</p>
     </div>
-    <div class="haiku-forms">
-      Author:
-      <input type="text" v-model="author" required />
-    </div>
-    <div id="prompt" for="prompt" class="haiku-forms">
-      Prompt:
-      <input id="prompt-input" type="text" v-model="prompt" required />
-    </div>
-    <div class="haiku-forms">
-      Haiku:
-      <input type="text" v-model="haiku" required />
-      <button id="click-add" @click="addHaiku">Click me</button>
-    </div>
-    <div id="haiku-list">
-      <ul v-if="containsHaikus">
-        <li v-for="(item, key) in haikus" :key="key">{{ item }}</li>
-      </ul>
-      <p v-else>nipples</p>
-    </div>
+    <form>
+      <div id="haiku-form">
+        <label id="author-label" for="author-input" class="haiku-forms">Author:</label>
+        <input id="author-input" type="text" v-model="formAuthor" />
+        <label id="prompt-label" for="prompt-input" class="haiku-forms">Prompt:</label>
+        <input id="prompt-input" type="text" v-model="formPrompt" />
+        <label id="haiku-label" for="haiku-input" class="haiku-forms">Haiku:</label>
+        <input id="haiku-input" type="text" v-model="formHaiku" />
+        <button id="click-add" @click.prevent="addHaiku">Submit haiku :3</button>
+      </div>
+    </form>
   </main>
+  <div id="haiku-list" v-if="haikus.author">
+    <p v-for="(value, key) in haikus" :key="key">Author: {{ value }}</p>
+  </div>
 </template>
 
 <style>
