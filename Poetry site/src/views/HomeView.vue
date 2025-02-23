@@ -1,19 +1,21 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
+
 export type Haiku = {
   author: string
   prompt: string
   haiku: string
 }
 
-let formAuthor: string = ''
-let formPrompt: string = ''
-let formHaiku: string = ''
-
-let haikus: Haiku = {
+const haikus = reactive({
   author: '',
   prompt: '',
   haiku: '',
-}
+})
+
+let formAuthor = ''
+let formPrompt = ''
+let formHaiku = ''
 
 function clearFields(): void {
   formAuthor = ''
@@ -22,7 +24,9 @@ function clearFields(): void {
 }
 
 function addHaiku(): void {
-  haikus = { ...haikus, author: formAuthor, prompt: formPrompt, haiku: formHaiku }
+  // I hate this
+  Object.assign(haikus, { author: formAuthor, prompt: formPrompt, haiku: formHaiku })
+  console.log(haikus)
   clearFields()
 }
 </script>
