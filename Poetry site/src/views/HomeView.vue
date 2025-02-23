@@ -9,7 +9,6 @@ let formAuthor: string = ''
 let formPrompt: string = ''
 let formHaiku: string = ''
 
-// const containsHaikus = ref(false)
 let haikus: Haiku = {
   author: '',
   prompt: '',
