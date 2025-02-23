@@ -47,15 +47,19 @@ function addHaiku(): void {
         <label id="haiku-label" for="haiku-input" class="haiku-forms">Haiku:</label>
         <input id="haiku-input" type="text" v-model="formHaiku" />
         <button id="click-add" @click.prevent="addHaiku">Submit haiku :3</button>
+        <button id="click-reset" @click.prevent="clearFields">o no D:!</button>
       </div>
     </form>
   </main>
   <div id="haiku-list" v-if="haikus.author">
-    <p v-for="(value, key) in haikus" :key="key">Author: {{ value }}</p>
+    <div v-for="(value, key, index) in haikus" :key="index">{{ key }}: {{ value }}</div>
   </div>
 </template>
 
 <style>
+#click-reset {
+  margin-top: 1em;
+}
 main {
   background-color: rgb(74, 65, 130);
   margin: auto;
@@ -69,7 +73,8 @@ main {
 }
 
 #haiku-list {
-  text-align: center;
+  display: grid;
+  grid-template-columns: auto;
   max-width: fit-content;
   margin: auto;
 }
