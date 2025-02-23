@@ -1,23 +1,30 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+export type Haiku = {
+  author: string
+  prompt: string
+  haiku: string
+}
 
-let author: string = ''
-let prompt: string = ''
-let haiku: string = ''
+let formAuthor: string = ''
+let formPrompt: string = ''
+let formHaiku: string = ''
 
-const containsHaikus = ref(false)
-const haikus = ref([{}])
+// const containsHaikus = ref(false)
+let haikus: Haiku = {
+  author: '',
+  prompt: '',
+  haiku: '',
+}
 
 function clearFields(): void {
-  author = ''
-  prompt = ''
-  haiku = ''
+  formAuthor = ''
+  formPrompt = ''
+  formHaiku = ''
 }
 
 function addHaiku(): void {
-  haikus.value.push({ author: author, prompt: prompt, haiku: haiku })
+  haikus = { ...haikus, author: formAuthor, prompt: formPrompt, haiku: formHaiku }
   clearFields()
-  containsHaikus.value = true
 }
 </script>
 
