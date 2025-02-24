@@ -52,11 +52,28 @@ function addHaiku(): void {
         <label id="prompt-label" for="prompt-input" class="haiku-forms">Prompt:</label>
         <input id="prompt-input" placeholder="viscera" type="text" v-model="formPrompt" />
         <label id="first-line-label" for="first-line-input" class="haiku-forms">First Line:</label>
-        <input id="first-line-input" placeholder="Place here a sentence." type="text" v-model="formFirstLine" />
-        <label id="second-line-label" for="second-line-input" class="haiku-forms">Second Line:</label>
-        <input id="second-line-input" placeholder="Gently we all grow through life." type="text" v-model="formSecondLine" />
+        <input
+          id="first-line-input"
+          placeholder="Place here a sentence."
+          type="text"
+          v-model="formFirstLine"
+        />
+        <label id="second-line-label" for="second-line-input" class="haiku-forms"
+          >Second Line:</label
+        >
+        <input
+          id="second-line-input"
+          placeholder="Gently we all grow through life."
+          type="text"
+          v-model="formSecondLine"
+        />
         <label id="third-line-label" for="third-line-input" class="haiku-forms">Third Line:</label>
-        <input id="third-line-input" placeholder="The end begins again." type="text" v-model="formThirdLine" />
+        <input
+          id="third-line-input"
+          placeholder="The end begins again."
+          type="text"
+          v-model="formThirdLine"
+        />
         <button id="click-add" @click.prevent="addHaiku">Submit haiku :3</button>
         <button id="click-reset" @click.prevent="clearFields">o no D:!</button>
       </div>
@@ -127,7 +144,8 @@ button {
   background-color: rgb(134, 124, 195);
   color: antiquewhite;
   padding: 1em;
-  &:active, &:focus {
+  &:active,
+  &:focus {
     background-color: rgb(184, 174, 245);
   }
   &:disabled {
