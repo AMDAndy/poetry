@@ -39,7 +39,6 @@ function addHaiku(): void {
     haikus.value[key] = []
   }
   haikus.value[key].push(newHaiku)
-  console.log(newHaiku)
   clearFields()
 }
 </script>
