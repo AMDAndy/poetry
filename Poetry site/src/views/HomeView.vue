@@ -100,6 +100,7 @@ main {
   background-color: rgb(74, 65, 130);
   margin: auto;
   padding: 1rem;
+  border-radius: 3px;
 }
 
 #haiku-form {
