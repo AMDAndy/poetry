@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 export type Haiku = {
   author: string
@@ -7,26 +7,31 @@ export type Haiku = {
   haiku: string
 }
 
-const haikus = reactive({
-  author: '',
-  prompt: '',
-  haiku: '',
-})
+const haikus = ref<{ [key: string]: Haiku[] }>({})
 
-let formAuthor = ''
-let formPrompt = ''
-let formHaiku = ''
+const formAuthor = ref('')
+const formPrompt = ref('')
+const formHaiku = ref('')
 
 function clearFields(): void {
-  formAuthor = ''
-  formPrompt = ''
-  formHaiku = ''
+  formAuthor.value = ''
+  formPrompt.value = ''
+  formHaiku.value = ''
 }
 
 function addHaiku(): void {
-  // I hate this
-  Object.assign(haikus, { author: formAuthor, prompt: formPrompt, haiku: formHaiku })
-  console.log(haikus)
+  const key = formAuthor.value
+  const newHaiku: Haiku = {
+    author: formAuthor.value,
+    prompt: formPrompt.value,
+    haiku: formHaiku.value,
+  }
+
+  if (!haikus.value[key]) {
+    haikus.value[key] = []
+  }
+  haikus.value[key].push(newHaiku)
+  console.log(newHaiku)
   clearFields()
 }
 </script>
@@ -51,8 +56,17 @@ function addHaiku(): void {
       </div>
     </form>
   </main>
-  <div id="haiku-list" v-if="haikus.author">
-    <div v-for="(value, key, index) in haikus" :key="index">{{ key }}: {{ value }}</div>
+  <div id="haiku-list">
+    <li v-for="(myHaikus, key) in haikus" :key="key">
+      <strong>{{ key }}</strong>
+      <ul>
+        <li v-for="haiku in myHaikus" :key="haiku.author">
+          <p>Author: {{ haiku.author }}</p>
+          <p>Prompt: {{ haiku.prompt }}</p>
+          <p>Haiku: {{ haiku.haiku }}</p>
+        </li>
+      </ul>
+    </li>
   </div>
 </template>
 
