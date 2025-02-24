@@ -4,19 +4,25 @@ import { ref } from 'vue'
 export type Haiku = {
   author: string
   prompt: string
-  haiku: string
+  firstLine: string
+  secondLine: string
+  thirdLine: string
 }
 
 const haikus = ref<{ [key: string]: Haiku[] }>({})
 
 const formAuthor = ref('')
 const formPrompt = ref('')
-const formHaiku = ref('')
+const formFirstLine = ref('')
+const formSecondLine = ref('')
+const formThirdLine = ref('')
 
 function clearFields(): void {
   formAuthor.value = ''
   formPrompt.value = ''
-  formHaiku.value = ''
+  formFirstLine.value = ''
+  formSecondLine.value = ''
+  formThirdLine.value = ''
 }
 
 function addHaiku(): void {
@@ -24,7 +30,9 @@ function addHaiku(): void {
   const newHaiku: Haiku = {
     author: formAuthor.value,
     prompt: formPrompt.value,
-    haiku: formHaiku.value,
+    firstLine: formFirstLine.value,
+    secondLine: formSecondLine.value,
+    thirdLine: formThirdLine.value,
   }
 
   if (!haikus.value[key]) {
@@ -38,19 +46,18 @@ function addHaiku(): void {
 
 <template>
   <main>
-    <div class="home-haiku">
-      <p>Place here a sentence.</p>
-      <p>Gently we all grow through life.</p>
-      <p>The end begins again.</p>
-    </div>
     <form>
       <div id="haiku-form">
         <label id="author-label" for="author-input" class="haiku-forms">Author:</label>
-        <input id="author-input" type="text" v-model="formAuthor" />
+        <input id="author-input" placeholder="Merpsy Werpsy" type="text" v-model="formAuthor" />
         <label id="prompt-label" for="prompt-input" class="haiku-forms">Prompt:</label>
-        <input id="prompt-input" type="text" v-model="formPrompt" />
-        <label id="haiku-label" for="haiku-input" class="haiku-forms">Haiku:</label>
-        <input id="haiku-input" type="text" v-model="formHaiku" />
+        <input id="prompt-input" placeholder="viscera" type="text" v-model="formPrompt" />
+        <label id="first-line-label" for="first-line-input" class="haiku-forms">First Line:</label>
+        <input id="first-line-input" placeholder="Place here a sentence." type="text" v-model="formFirstLine" />
+        <label id="second-line-label" for="second-line-input" class="haiku-forms">Second Line:</label>
+        <input id="second-line-input" placeholder="Gently we all grow through life." type="text" v-model="formSecondLine" />
+        <label id="third-line-label" for="third-line-input" class="haiku-forms">Third Line:</label>
+        <input id="third-line-input" placeholder="The end begins again." type="text" v-model="formThirdLine" />
         <button id="click-add" @click.prevent="addHaiku">Submit haiku :3</button>
         <button id="click-reset" @click.prevent="clearFields">o no D:!</button>
       </div>
@@ -60,10 +67,9 @@ function addHaiku(): void {
     <li v-for="(myHaikus, key) in haikus" :key="key">
       <strong>{{ key }}</strong>
       <ul>
-        <li v-for="haiku in myHaikus" :key="haiku.author">
-          <p>Author: {{ haiku.author }}</p>
-          <p>Prompt: {{ haiku.prompt }}</p>
-          <p>Haiku: {{ haiku.haiku }}</p>
+        <li v-for="haiku in myHaikus" :key="haiku.prompt">
+          <p>{{ haiku.prompt }}</p>
+          <p>{{ haiku.firstLine }}<br />{{ haiku.secondLine }}<br />{{ haiku.thirdLine }}<br /></p>
         </li>
       </ul>
     </li>
@@ -122,6 +128,12 @@ button {
   background-color: rgb(134, 124, 195);
   color: antiquewhite;
   padding: 1em;
+  &:active, &:focus {
+    background-color: rgb(184, 174, 245);
+  }
+  &:disabled {
+    color: silver;
+  }
 }
 
 label {
