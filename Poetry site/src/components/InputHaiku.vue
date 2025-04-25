@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Haiku } from '@/models/Haiku'
+import HaikuList from './HaikuList.vue'
 import { ref } from 'vue'
 
 const haikus = ref<{ [key: string]: Haiku[] }>({})
@@ -32,8 +33,18 @@ function addHaiku(): void {
     haikus.value[key] = []
   }
   haikus.value[key].push(newHaiku)
+  localStorage.setItem('haikus', JSON.stringify(haikus.value))
   clearFields()
 }
+
+function getHaikus(): void {
+  const storedHaikus = localStorage.getItem('haikus')
+  if (storedHaikus) {
+    haikus.value = JSON.parse(storedHaikus)
+  }
+}
+
+getHaikus()
 </script>
 
 <template>
@@ -73,17 +84,7 @@ function addHaiku(): void {
     </form>
   </div>
 
-  <div id="haiku-list">
-    <li v-for="(myHaikus, key) in haikus" :key="key">
-      <strong>{{ key }}</strong>
-      <ul>
-        <li v-for="haiku in myHaikus" :key="haiku.prompt">
-          <p>{{ haiku.prompt }}</p>
-          <p>{{ haiku.firstLine }}<br />{{ haiku.secondLine }}<br />{{ haiku.thirdLine }}<br /></p>
-        </li>
-      </ul>
-    </li>
-  </div>
+  <HaikuList :haikus="haikus" />
 </template>
 
 <style>
