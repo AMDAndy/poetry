@@ -23,12 +23,10 @@ function sendDeleteAuthor(key: string | number, index: number) {
   <div id="haiku-list">
     <li v-for="(myHaikus, author, authorIndex) in haikus" :key="author">
       <strong>{{ author }}</strong>
-      <button @click="sendDeleteAuthor(author, authorIndex)">Delete my second butthole</button>
+      <button @click="sendDeleteAuthor(author, authorIndex)">Delete author</button>
       <ul>
         <li v-for="(haiku, haikuIndex) in myHaikus" :key="haiku.prompt">
-          <button @click="sendDeleteHaiku(haiku.author, haikuIndex)">
-            Delete me in the butthole
-          </button>
+          <button @click="sendDeleteHaiku(haiku.author, haikuIndex)">Delete haiku</button>
           <br />
           <p>{{ haiku.prompt }}</p>
           <p>{{ haiku.firstLine }}<br />{{ haiku.secondLine }}<br />{{ haiku.thirdLine }}<br /></p>
