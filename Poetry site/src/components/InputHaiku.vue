@@ -21,6 +21,7 @@ function clearFields(): void {
 
 function addHaiku(): void {
   const key = formAuthor.value
+
   const newHaiku: Haiku = {
     author: formAuthor.value,
     prompt: formPrompt.value,
@@ -32,6 +33,7 @@ function addHaiku(): void {
   if (!haikus.value[key]) {
     haikus.value[key] = []
   }
+
   haikus.value[key].push(newHaiku)
   localStorage.setItem('haikus', JSON.stringify(haikus.value))
   clearFields()
@@ -42,6 +44,17 @@ function getHaikus(): void {
   if (storedHaikus) {
     haikus.value = JSON.parse(storedHaikus)
   }
+}
+
+function deleteAuthor(author: string, index: number) {
+  //haikus.value[author].splice(0, haikus.value[author].length)
+  delete haikus.value[author]
+  localStorage.setItem('haikus', JSON.stringify(haikus.value))
+}
+
+function deleteHaiku(author: string, index: number) {
+  haikus.value[author].splice(index, 1)
+  localStorage.setItem('haikus', JSON.stringify(haikus.value))
 }
 
 getHaikus()
@@ -84,7 +97,7 @@ getHaikus()
     </form>
   </div>
 
-  <HaikuList :haikus="haikus" />
+  <HaikuList :haikus="haikus" @delete-haiku="deleteHaiku" @delete-author="deleteAuthor" />
 </template>
 
 <style>
