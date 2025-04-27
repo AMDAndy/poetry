@@ -60,7 +60,14 @@ function deleteHaiku(author: string, index: number): void {
 }
 
 // FIXME: ANDY FIX IT
-function importJson(jsonUrl: string): void {
+// this doesn't work ;w;
+function importJson(jsonUrl: Haiku): void {
+  // formAuthor.value = jsonUrl.author
+  // formPrompt.value = jsonUrl.prompt
+  // formFirstLine.value = jsonUrl.firstLine
+  // formSecondLine.value = jsonUrl.secondLine
+  // formThirdLine.value = jsonUrl.thirdLine
+
   // const newHaiku: Haiku = {
   //   author: formAuthor.value,
   //   prompt: formPrompt.value,
@@ -69,17 +76,17 @@ function importJson(jsonUrl: string): void {
   //   thirdLine: formThirdLine.value,
   // }
 
-  const key = formAuthor.value
+  // const key = formAuthor.value
 
-  if (!haikus.value[key]) {
-    haikus.value[key] = []
-  }
+  // if (!haikus.value[key]) {
+  //   haikus.value[key] = []
+  // }
 
   try {
     console.log(jsonUrl)
-    //haikus.value[key].push(newHaiku)
-    //localStorage.setItem('haikus', JSON.stringify(jsonUrl))
-    clearFields()
+    // haikus.value[key].push(newHaiku)
+    localStorage.setItem('haikus', JSON.stringify(jsonUrl))
+    console.log('aaaaaaaaaaaaaaaaaaa')
   } catch {
     console.log('oh no!!!!!!!!')
   }

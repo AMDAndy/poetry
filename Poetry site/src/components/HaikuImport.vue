@@ -15,8 +15,8 @@ const readFileContents = async () => {
   if (file.value) {
     try {
       const contents = await file.value.text()
-      const j: Haiku = JSON.parse(contents)
-      emit('importJson', j.author)
+      const fileContents = JSON.parse(contents)
+      emit('importJson', fileContents)
     } catch (error) {
       console.error('Error reading file:', error)
     }
