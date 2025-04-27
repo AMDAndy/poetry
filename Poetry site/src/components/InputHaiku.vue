@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Haiku } from '@/models/Haiku'
 import HaikuList from './HaikuList.vue'
+import HaikuImport from './HaikuImport.vue'
 import { ref } from 'vue'
 
 const haikus = ref<{ [key: string]: Haiku[] }>({})
+
+const showImport = ref(false)
 
 const formAuthor = ref('')
 const formPrompt = ref('')
@@ -92,6 +95,12 @@ getHaikus()
         />
         <button id="click-add" @click.prevent="addHaiku">Submit haiku :3</button>
         <button id="click-reset" @click.prevent="clearFields">o no D:!</button>
+        <button id="click-import" @click.prevent="showImport = !showImport">
+          Import Haiku ...
+        </button>
+        <div v-if="showImport">
+          <HaikuImport :haikus="haikus" />
+        </div>
       </div>
     </form>
   </div>
