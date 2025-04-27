@@ -49,12 +49,12 @@ function getHaikus(): void {
   }
 }
 
-function deleteAuthor(author: string, index: number) {
+function deleteAuthor(author: string): void {
   delete haikus.value[author]
   localStorage.setItem('haikus', JSON.stringify(haikus.value))
 }
 
-function deleteHaiku(author: string, index: number) {
+function deleteHaiku(author: string, index: number): void {
   haikus.value[author].splice(index, 1)
   localStorage.setItem('haikus', JSON.stringify(haikus.value))
 }
