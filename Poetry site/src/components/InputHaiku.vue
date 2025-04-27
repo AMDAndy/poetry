@@ -59,6 +59,36 @@ function deleteHaiku(author: string, index: number): void {
   localStorage.setItem('haikus', JSON.stringify(haikus.value))
 }
 
+// FIXME: ANDY FIX IT
+function importJson(jsonUrl: string): void {
+  // const newHaiku: Haiku = {
+  //   author: formAuthor.value,
+  //   prompt: formPrompt.value,
+  //   firstLine: formFirstLine.value,
+  //   secondLine: formSecondLine.value,
+  //   thirdLine: formThirdLine.value,
+  // }
+
+  const key = formAuthor.value
+
+  if (!haikus.value[key]) {
+    haikus.value[key] = []
+  }
+
+  try {
+    console.log(jsonUrl)
+    //haikus.value[key].push(newHaiku)
+    //localStorage.setItem('haikus', JSON.stringify(jsonUrl))
+    clearFields()
+  } catch {
+    console.log('oh no!!!!!!!!')
+  }
+}
+
+function cancelImport() {
+  showImport.value = false
+}
+
 getHaikus()
 </script>
 
@@ -99,7 +129,7 @@ getHaikus()
           Import Haiku ...
         </button>
         <div v-if="showImport">
-          <HaikuImport :haikus="haikus" />
+          <HaikuImport :haikus="haikus" @importJson="importJson" @cancel="cancelImport" />
         </div>
       </div>
     </form>

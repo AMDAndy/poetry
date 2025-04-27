@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Haiku } from '@/models/Haiku'
-import jsonUrl from '/Users/shemkl/test.json'
+import { ref } from 'vue'
 
 defineProps({
   haikus: {
@@ -8,21 +8,39 @@ defineProps({
     required: true,
   },
 })
+const file = ref<File | null>(null)
+const fileContents = ref<string | null>(null)
 
-function importJson() {
-  try {
-    //haikus.value[key].push()
-    localStorage.setItem('haikus', JSON.stringify(jsonUrl))
-  } catch (e) {
-    console.log(e)
+const readFileContents = async () => {
+  if (file.value) {
+    try {
+      const contents = await file.value.text()
+      const j: Haiku = JSON.parse(contents)
+      emit('importJson', j.author)
+    } catch (error) {
+      console.error('Error reading file:', error)
+    }
+  }
+  fileContents.value = null
+}
+
+const emit = defineEmits(['importJson', 'addHaiku', 'cancel'])
+
+const handleFileChange = (event: Event) => {
+  const target: HTMLInputElement = event.target as HTMLInputElement
+  if (target.files) {
+    file.value = target.files[0]
+    readFileContents()
   }
 }
 </script>
 
 <template>
   <div id="import-container">
-    <label id="import-label" for="import-input" class="haiku-forms">URL:</label>
-    <input id="import-input" placeholder="The end begins again." type="text" v-model="jsonUrl" />
+    <label class="file-select">
+      <input type="file" @change="handleFileChange" />
+    </label>
   </div>
-  <button @click.prevent="importJson">Import!</button>
+  <button @click.prevent="$emit('addHaiku')">Import!</button>
+  <button @click.prevent="$emit('cancel')">Cancel</button>
 </template>
