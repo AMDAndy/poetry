@@ -29,7 +29,14 @@ function sendDeleteAuthor(key: string | number, index: number) {
           <button @click="sendDeleteHaiku(haiku.author, haikuIndex)">Delete haiku</button>
           <br />
           <p>{{ haiku.prompt }}</p>
-          <p>{{ haiku.firstLine }}<br />{{ haiku.secondLine }}<br />{{ haiku.thirdLine }}<br /></p>
+          <p>
+            {{ haiku.firstLine }}
+            <br />
+            {{ haiku.secondLine }}
+            <br />
+            {{ haiku.thirdLine }}
+            <br />
+          </p>
         </li>
       </ul>
     </li>
