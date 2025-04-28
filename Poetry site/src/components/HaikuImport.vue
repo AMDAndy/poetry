@@ -37,10 +37,21 @@ const handleFileChange = (event: Event) => {
 
 <template>
   <div id="import-container">
-    <label class="file-select">
-      <input type="file" @change="handleFileChange" />
-    </label>
+    <div id="import-dialog">
+      <label class="file-select">
+        <input type="file" @change="handleFileChange" />
+      </label>
+    </div>
+    <div id="meta-buttons">
+      <button @click.prevent="$emit('addHaiku')">Import!</button>
+      <button @click.prevent="$emit('cancel')">Cancel</button>
+    </div>
   </div>
-  <button @click.prevent="$emit('addHaiku')">Import!</button>
-  <button @click.prevent="$emit('cancel')">Cancel</button>
 </template>
+
+<style>
+#meta-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+</style>
