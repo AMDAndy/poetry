@@ -132,20 +132,24 @@ getHaikus()
         />
         <button id="click-add" @click.prevent="addHaiku">Submit haiku :3</button>
         <button id="click-reset" @click.prevent="clearFields">o no D:!</button>
-        <button id="click-import" @click.prevent="showImport = !showImport">
-          Import Haiku ...
-        </button>
-        <div v-if="showImport">
-          <HaikuImport :haikus="haikus" @importJson="importJson" @cancel="cancelImport" />
-        </div>
       </div>
     </form>
+  </div>
+  <div id="import-container">
+    <button id="click-import" @click.prevent="showImport = !showImport">Import Haiku ...</button>
+    <div v-if="showImport">
+      <HaikuImport :haikus="haikus" @importJson="importJson" @cancel="cancelImport" />
+    </div>
   </div>
 
   <HaikuList :haikus="haikus" @delete-haiku="deleteHaiku" @delete-author="deleteAuthor" />
 </template>
 
 <style>
+#import-container {
+  margin-top: 1rem;
+  background-color: rgb(74, 65, 130);
+}
 #click-import {
   margin-top: 1em;
 }
