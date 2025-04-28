@@ -146,6 +146,9 @@ getHaikus()
 </template>
 
 <style>
+#click-import {
+  margin-top: 1em;
+}
 #haikutainer {
   margin: auto;
   background-color: rgb(74, 65, 130);
