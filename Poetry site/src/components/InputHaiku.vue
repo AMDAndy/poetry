@@ -146,11 +146,6 @@ getHaikus()
 </template>
 
 <style>
-#click-reset {
-  margin-top: 1em;
-}
-
-/* I'm lazy, will fix later */
 #haikutainer {
   margin: auto;
   background-color: rgb(74, 65, 130);
