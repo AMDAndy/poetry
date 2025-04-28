@@ -198,6 +198,7 @@ button {
   border-radius: 3px;
   background-color: rgb(134, 124, 195);
   color: antiquewhite;
+  margin: 0.3em;
   padding: 1em;
   &:active,
   &:focus {
