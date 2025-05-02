@@ -59,7 +59,6 @@ function deleteHaiku(author: string, index: number): void {
   localStorage.setItem('haikus', JSON.stringify(haikus.value))
 }
 
-// FIXME: ANDY FIX IT
 function importJson(jsonData: Record<string, Haiku[]>): void {
   try {
     for (const [key, value] of Object.entries(jsonData)) {
