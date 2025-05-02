@@ -15,7 +15,7 @@ const readFileContents = async () => {
   if (file.value) {
     try {
       const contents = await file.value.text()
-      const fileContents = JSON.parse(contents)
+      const fileContents = JSON.parse(contents) as Haiku[]
       emit('importJson', fileContents)
     } catch (error) {
       console.error('Error reading file:', error)

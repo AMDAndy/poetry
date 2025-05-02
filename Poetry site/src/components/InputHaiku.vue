@@ -60,35 +60,32 @@ function deleteHaiku(author: string, index: number): void {
 }
 
 // FIXME: ANDY FIX IT
-// this doesn't work ;w;
-function importJson(jsonUrl: Haiku): void {
-  // formAuthor.value = jsonUrl.author
-  // formPrompt.value = jsonUrl.prompt
-  // formFirstLine.value = jsonUrl.firstLine
-  // formSecondLine.value = jsonUrl.secondLine
-  // formThirdLine.value = jsonUrl.thirdLine
-
-  // const newHaiku: Haiku = {
-  //   author: formAuthor.value,
-  //   prompt: formPrompt.value,
-  //   firstLine: formFirstLine.value,
-  //   secondLine: formSecondLine.value,
-  //   thirdLine: formThirdLine.value,
-  // }
-
-  // const key = formAuthor.value
-
-  // if (!haikus.value[key]) {
-  //   haikus.value[key] = []
-  // }
-
+function importJson(jsonData: Record<string, Haiku[]>): void {
   try {
-    console.log(jsonUrl)
-    // haikus.value[key].push(newHaiku)
-    localStorage.setItem('haikus', JSON.stringify(jsonUrl))
-    console.log('aaaaaaaaaaaaaaaaaaa')
-  } catch {
-    console.log('oh no!!!!!!!!')
+    for (const [key, value] of Object.entries(jsonData)) {
+      // fix later. this is duplicated code.
+      value.forEach((haiku) => {
+        const newHaiku: Haiku = {
+          author: haiku.author,
+          prompt: haiku.prompt,
+          firstLine: haiku.firstLine,
+          secondLine: haiku.secondLine,
+          thirdLine: haiku.thirdLine,
+        }
+
+        if (!haikus.value[key]) {
+          haikus.value[key] = []
+        }
+
+        haikus.value[key].push(newHaiku)
+      })
+      // end dupe
+    }
+    localStorage.setItem('haikus', JSON.stringify(haikus.value))
+    console.log('Done!')
+  } catch (e) {
+    console.log(e)
+    console.log('An error!')
   }
 }
 
