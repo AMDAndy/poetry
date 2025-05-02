@@ -26,8 +26,6 @@ function sendDeleteAuthor(key: string | number, index: number) {
       <button @click="sendDeleteAuthor(author, authorIndex)">Delete author</button>
       <ul>
         <li v-for="(haiku, haikuIndex) in myHaikus" :key="haiku.prompt">
-          <button @click="sendDeleteHaiku(haiku.author, haikuIndex)">Delete haiku</button>
-          <br />
           <p>{{ haiku.prompt }}</p>
           <p>
             {{ haiku.firstLine }}
@@ -37,6 +35,7 @@ function sendDeleteAuthor(key: string | number, index: number) {
             {{ haiku.thirdLine }}
             <br />
           </p>
+          <button @click="sendDeleteHaiku(haiku.author, haikuIndex)">Delete haiku</button>
         </li>
       </ul>
     </li>
